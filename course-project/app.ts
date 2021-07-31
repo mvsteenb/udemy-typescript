@@ -1,12 +1,17 @@
-let userInput: unknown;
-let userName: string;
-userInput = 5;
-userInput = 'Mario';
-if (typeof userInput === 'string') {
-  userName = userInput;
-}
+type Admin = {
+  name: string;
+  privileges: string[];
+};
 
-function generateError(message: string, code: number): never {
-  throw {message: message, errorCode: code};
+type Employee = {
+  name: string;
+  startDate: Date;
+};
+
+type ElevatedEmployee = Admin & Employee;
+
+const e1: ElevatedEmployee = {
+  name: 'Mario',
+  privileges: ['create-server'],
+  startDate: new Date()
 }
-generateError('An error has occured', 500);
