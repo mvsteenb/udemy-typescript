@@ -7,6 +7,7 @@
 import {Product} from '../product.model';
 import 'reflect-metadata';
 import {plainToClass} from 'class-transformer';
+import {validate} from 'class-validator';
 
 'class-transformer'
 
@@ -16,6 +17,18 @@ const products = [
 ];
 const p1 = new Product('A book', 12.99);
 console.log(p1.getInformation());
+
+const newProd = new Product('', -5);
+validate(newProd).then(errors => {
+    if (errors.length > 0) {
+        console.log('VALIDATION ERRORS !')
+        console.log(errors);
+    }
+    else {
+        console.log(newProd);
+    }
+});
+
 
 /*const loadedProducts = products.map(p => {
     return new Product(p.title, p.price);
